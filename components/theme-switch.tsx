@@ -24,20 +24,22 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
   // const onChange = () => {
   //   theme === "light" ? setTheme("dark") : setTheme("light");
   // };
-
+  const onChange = () => {
+    theme === "light" ? setTheme("light") : setTheme("light");
+  };
   const {
     Component,
     slots,
-    // isSelected,
+    isSelected,
     getBaseProps,
     getInputProps,
     getWrapperProps,
-  } = useSwitch();
-  {
-    //   isSelected: theme === "light" || isSSR,
-    //   "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
-    //   // onChange,
-  }
+  } = useSwitch({
+    isSelected: theme === "light" || isSSR,
+    // "aria-label": `Switch to ${theme === "light" || isSSR ? "dark" : "light"} mode`,
+    "aria-label": `Switch to ${theme === "light" || isSSR ? "light" : "light"} mode`,
+    onChange,
+  });
 
   return (
     <Component
@@ -71,11 +73,11 @@ export const ThemeSwitch: FC<ThemeSwitchProps> = ({
           ),
         })}
       >
-        {/* {!isSelected || isSSR ? (
+        {!isSelected || isSSR ? (
           <SunFilledIcon size={22} />
         ) : (
           <MoonFilledIcon size={22} />
-        )} */}
+        )}
       </div>
     </Component>
   );
